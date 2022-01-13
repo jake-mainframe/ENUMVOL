@@ -4,8 +4,7 @@ ENUMVOL  CSECT
 ***********************************************************************       
          BALR  R12,0
          USING *,R12
-         LA    R13,SAVE
-         STM   R14,R12,12(R13)         
+         STM   R14,R12,SAVE      
          OPEN (OUTDCB,(OUTPUT))
 ***********************************************************************
 *    MAINSTREAM OF PROGRAM
@@ -28,8 +27,7 @@ GETNEXT  LA    R4,152(R4)           GET NEXT UCB FROM MASTER
 *    END OF PROGRAM
 ***********************************************************************
 ENDPROG  CLOSE (OUTDCB)
-         LA    R13,SAVE
-         LM    R14,R12,12(R13)
+         LM    R14,R12,SAVE
          XR    R15,R15
          BR    R14
 ***********************************************************************
@@ -39,7 +37,7 @@ DEVNUMP   DC    C' '
 DEVNUM    DS    CL3
           DC    C' '
 VOLSER    DS    CL6
-FILL      DC    80CL1' '
+FILL      DC    CL80' '
 SAVE      DS    18F
 ***********************************************************************
 *    DATASETS
